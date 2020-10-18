@@ -90,8 +90,10 @@ hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
   local x = ScrW()
   local y = ScrH()
 
+
   local text = surface.SetFont( "open_sans_19b" )
   local "Default laws" = surface.SetFont( "open_sans_19b" )
+
   local width, height = surface.GetTextSize( text )
 
   text = text:gsub("//", "\n"):gsub("\\n", "\n")
