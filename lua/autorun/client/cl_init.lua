@@ -60,12 +60,12 @@ function OpenLawsEditor()
   end
 
   local TextEntry = vgui.Create( "DTextEntry", Frame )
-  local text = laws or "Default laws."
+  local lawTxt = laws or "Default laws."
   TextEntry:SetPos( 8, 25 )
   TextEntry:SetSize( 583, 480 )
-  TextEntry:SetText( text )
+  TextEntry:SetText( lawTxt )
   TextEntry:SetMultiline( true )
-  if (text == "") then text = "Default laws." end
+  if (lawTxt == "") then lawTxt = "Default laws." end
 
   local DermaButton = vgui.Create( "DButton", Frame )
   DermaButton:SetText( "Update Laws" )
@@ -86,20 +86,20 @@ net.Receive( "LawsPublic", function()
 end)
 
 hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
-  local text = laws or "Default laws."
+  local lawTxt = laws or "Default laws."
   local x = ScrW()
   local y = ScrH()
 
-  local width, height = surface.GetTextSize( text )
+  local width, height = surface.GetTextSize( lawTxt )
 
-  text = text:gsub("//", "\n"):gsub("\\n", "\n")
-  text = DarkRP.textWrap(text, "open_sans_19b", 445)
-  if (text == "") then text = "Default laws." end
+  lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
+  lawTxt = DarkRP.textWrap(LawTxt, "open_sans_19b", 445)
+  if (lawTxt == "") then lawTxt = "Default laws." end
 
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 35, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
 
-  draw.DrawNonParsedText(text, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
-  draw.DrawNonParsedText(text, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 100), 0)
-  draw.DrawNonParsedText(text, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
+  draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
+  draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 100), 0)
+  draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
 end)
