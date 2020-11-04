@@ -93,7 +93,7 @@ hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
   local width, height = surface.GetTextSize( lawTxt )
 
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
-  lawTxt = DarkRP.textWrap(LawTxt, "open_sans_19b", 445)
+  lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
   if (lawTxt == "") then lawTxt = "Default laws." end
 
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 35, Color( 0, 0, 0, 128 ) )
