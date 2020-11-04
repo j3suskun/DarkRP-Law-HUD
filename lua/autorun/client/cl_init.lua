@@ -50,7 +50,7 @@ function OpenLawsEditor()
       lawValue = oldLaws
       notification.AddLegacy("Exceeded line limit", 1, 3)
     end
-    if(string.len(lawValue) > 1400)
+    if(string.len(lawValue) > 800)
     then
       lawValue = oldLaws
       notification.AddLegacy("Exceeded character limit", 1, 3)
