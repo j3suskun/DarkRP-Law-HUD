@@ -43,14 +43,14 @@ function OpenLawsEditor()
   DermaButton:SetSize( 250, 30 )
   DermaButton.DoClick = function()
     net.Start( "LawsValue" )
-    local LawValue = TextEntry:GetValue()
+    local lawValue = TextEntry:GetValue()
     local oldLaws = lawTxt
     if(GetLineNum(LawValue) > 20)
     then
       lawValue = oldLaws
       notification.AddLegacy("Exceeded line limit", 1, 3)
     end
-    net.WriteString( LawValue )
+    net.WriteString( lawValue )
     net.SendToServer()
   end
 end
