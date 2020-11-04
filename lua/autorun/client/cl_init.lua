@@ -55,16 +55,17 @@ function DrawLawBox()
   local x = ScrW()
   local y = ScrH()
 
-  local width, height = surface.GetTextSize( lawTxt )
-
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
   lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
 
   if (lawTxt == "") then lawTxt = "Default laws." end
-  print("text: ",lawTxt)
-  print("height: ",height)
+
+  local txtWidth, txtHeight = surface.GetTextSize( lawTxt )
   
-  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 35, Color( 0, 0, 0, 128 ) )
+  print("text: ",lawTxt)
+  print("height: ",txtHeight)
+
+  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, txtHeight + 35, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
 
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
