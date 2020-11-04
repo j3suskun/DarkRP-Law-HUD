@@ -88,7 +88,7 @@ net.Receive( "LawsPublic", function()
   laws = net.ReadString()
 end)
 
-hook.Add("HUDPaint_LawBox", function()
+hook.Add( "HUDPaint", function()
   local lawTxt = laws or "Default laws."
   local x = ScrW()
   local y = ScrH()
