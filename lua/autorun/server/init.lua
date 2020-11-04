@@ -5,7 +5,7 @@ util.AddNetworkString( "LawsPublic" )
 hook.Add( "PlayerSay", "OpenLawText", function( ply, text, public )
   local text = string.lower( text )
   if ( text == "/laws" ) then
-    if ply:Team() ~= TEAM_MAYOR then DarkRP.notify( ply, 1, 3, "Only the mayor can edit the laws.") return '' end
+    if ply:Team() ~= TEAM_PRESIDENT then DarkRP.notify( ply, 1, 3, "Only the president can edit the laws.") return '' end
     net.Start( "LawsMenu" )
     net.Send( ply )
     return ''
