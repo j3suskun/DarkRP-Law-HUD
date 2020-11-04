@@ -56,7 +56,7 @@ function DrawLawBox()
   local y = ScrH()
 
   local width, height = surface.GetTextSize( lawTxt )
-
+  print("height: ",height)
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
   lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
 
