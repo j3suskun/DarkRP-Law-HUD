@@ -39,13 +39,13 @@ local function FormatString(str)
 
    return str
 end
-
+/*
 local function SimpleShadowText(text, font, x, y, colour, min, xalign, yalign)
    dst(text, font, x + 1, y + 1, Color(0, 0, 0, math.min(colour.a, min + 70)), xalign, yalign)
    dst(text, font, x + 2, y + 1, Color(0, 0, 0, math.min(colour.a, min)), xalign, yalign)
    dst(text, font, x, y, colour, xalign, yalign)
 end
-
+*/
 function OpenLawsEditor()
   local Frame = vgui.Create( "DFrame" )
   Frame:SetSize( 600, 550 )
