@@ -16,7 +16,7 @@ function GetLineNum(text)
   return lineNum
 end
 
-function UpdateLaws()
+function UpdateLaws(TextEntry)
   net.Start( "LawsValue" )
   local LawValue = TextEntry:GetValue()
   local oldLaws = laws
@@ -54,7 +54,7 @@ function OpenLawsEditor()
   DermaButton:SetText( "Update Laws" )
   DermaButton:SetPos( 178 , 512  )
   DermaButton:SetSize( 250, 30 )
-  DermaButton.DoClick = UpdateLaws
+  DermaButton.DoClick = UpdateLaws(TextEntry)
 end
 
 net.Receive( "LawsMenu", OpenLawsEditor )
