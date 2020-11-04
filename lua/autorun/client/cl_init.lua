@@ -10,13 +10,14 @@ local colour = {
    ["light"] = Color(101, 111, 123),
 }
 
-local dst = draw.SimpleText
-
+//local dst = draw.SimpleText
+/*
 local pos_x = 0
 local pos_y = 0
 local offset = 0
 local position = 0
 local alpha = 0
+*/
 /*
 local function FormatString(str)
    local words = string.Explode(" ", str)
@@ -94,10 +95,10 @@ hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
   local width, height = surface.GetTextSize( lawTxt )
 
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
-  //lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
+  lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
   if (lawTxt == "") then lawTxt = "Default laws." end
 
-  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 35, Color( 0, 0, 0, 128 ) )
+  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 36, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
 
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
