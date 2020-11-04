@@ -45,6 +45,7 @@ function OpenLawsEditor()
     net.Start( "LawsValue" )
     local lawValue = TextEntry:GetValue()
     local oldLaws = lawTxt
+    if (oldLaws == "") then oldLaws = "Default laws." end
     if(GetLineNum(LawValue) > 20)
     then
       lawValue = oldLaws
