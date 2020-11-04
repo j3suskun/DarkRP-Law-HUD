@@ -70,4 +70,4 @@ function DrawLawBox()
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
 end
 
-hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox())
+hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
