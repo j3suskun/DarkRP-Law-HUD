@@ -1,5 +1,6 @@
 surface.CreateFont("open_sans_25b", {font = "Open Sans Bold", size = 25, weight = 800, antialias = true})
 surface.CreateFont("open_sans_19b", {font = "Open Sans Bold", size = 19, weight = 800, antialias = true})
+surface.SetFont("open_sans_19b")
 
 local colour = {
    ["pure_white"] = Color(255, 255, 255),
@@ -92,12 +93,12 @@ hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
   local x = ScrW()
   local y = ScrH()
 
-  //if (lawTxt == "") then lawTxt = "Default laws." end
-
   local width, height = surface.GetTextSize( lawTxt )
 
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
   lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
+
+  if (lawTxt == "") then lawTxt = "Default laws." end
 
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 36, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
