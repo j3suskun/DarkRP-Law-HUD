@@ -61,9 +61,6 @@ function DrawLawBox()
   if (lawTxt == "") then lawTxt = "Default laws." end
 
   local txtWidth, txtHeight = surface.GetTextSize( lawTxt )
-  
-  print("text: ",lawTxt)
-  print("height: ",txtHeight)
 
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, txtHeight + 35, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
