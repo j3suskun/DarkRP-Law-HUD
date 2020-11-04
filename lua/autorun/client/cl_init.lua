@@ -17,7 +17,7 @@ local pos_y = 0
 local offset = 0
 local position = 0
 local alpha = 0
-
+/*
 local function FormatString(str)
    local words = string.Explode(" ", str)
    local upper, lower, str
@@ -39,6 +39,7 @@ local function FormatString(str)
 
    return str
 end
+*/
 /*
 local function SimpleShadowText(text, font, x, y, colour, min, xalign, yalign)
    dst(text, font, x + 1, y + 1, Color(0, 0, 0, math.min(colour.a, min + 70)), xalign, yalign)
@@ -93,7 +94,7 @@ hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
   local width, height = surface.GetTextSize( lawTxt )
 
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
-  lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
+  //lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
   if (lawTxt == "") then lawTxt = "Default laws." end
 
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 35, Color( 0, 0, 0, 128 ) )
