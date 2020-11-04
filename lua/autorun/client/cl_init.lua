@@ -16,19 +16,6 @@ function GetLineNum(text)
   return lineNum
 end
 
-function UpdateLaws(TextEntry)
-  net.Start( "LawsValue" )
-  local LawValue = TextEntry:GetValue()
-  local oldLaws = laws
-  if(GetLineNum(LawValue) > 20)
-  then
-    lawValue = oldLaws
-    DarkRP.notify(ply, 1, 3, "Cannot exceed 20 lines")
-  end
-  net.WriteString( LawValue )
-  net.SendToServer()
-end
-
 function OpenLawsEditor()
   local Frame = vgui.Create( "DFrame" )
   Frame:SetSize( 600, 550 )
@@ -54,7 +41,18 @@ function OpenLawsEditor()
   DermaButton:SetText( "Update Laws" )
   DermaButton:SetPos( 178 , 512  )
   DermaButton:SetSize( 250, 30 )
-  DermaButton.DoClick = UpdateLaws(TextEntry)
+  DermaButton.DoClick = function()
+    net.Start( "LawsValue" )
+    local LawValue = TextEntry:GetValue()
+    local oldLaws = laws
+    if(GetLineNum(LawValue) > 20)
+    then
+      lawValue = oldLaws
+      DarkRP.notify(ply, 1, 3, "Cannot exceed 20 lines")
+    end
+    net.WriteString( LawValue )
+    net.SendToServer()
+  end
 end
 
 net.Receive( "LawsMenu", OpenLawsEditor )
