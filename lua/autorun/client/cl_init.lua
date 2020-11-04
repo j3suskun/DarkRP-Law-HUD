@@ -44,11 +44,11 @@ function OpenLawsEditor()
   DermaButton.DoClick = function()
     net.Start( "LawsValue" )
     local LawValue = TextEntry:GetValue()
-    local oldLaws = laws
+    local oldLaws = lawTxt
     if(GetLineNum(LawValue) > 20)
     then
       lawValue = oldLaws
-      DarkRP.notify(ply, 1, 3, "Cannot exceed 20 lines")
+      notification.AddLegacy("Exceeded line limit", 1, 3)
     end
     net.WriteString( LawValue )
     net.SendToServer()
