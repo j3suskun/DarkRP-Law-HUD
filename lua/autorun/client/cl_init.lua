@@ -55,6 +55,7 @@ function OpenLawsEditor()
       lawValue = oldLaws
       notification.AddLegacy("Exceeded character limit", 1, 3)
     end
+    lawTxt = lawValue
     net.WriteString( lawValue )
     net.SendToServer()
   end
