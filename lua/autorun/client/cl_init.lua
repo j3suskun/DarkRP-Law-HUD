@@ -47,13 +47,15 @@ function OpenLawsEditor()
     local oldLaws = lawTxt
     if(GetLineNum(lawValue) > 14)
     then
-      lawValue = oldLaws
+      net.WriteString(oldLaws)
+      net.SendToServer()
       notification.AddLegacy("Exceeded line limit", 1, 3)
       return
     end
     if(string.len(lawValue) > 800)
     then
-      lawValue = oldLaws
+      net.WriteString(oldLaws)
+      net.SendToServer()
       notification.AddLegacy("Exceeded character limit", 1, 3)
       return
     end
