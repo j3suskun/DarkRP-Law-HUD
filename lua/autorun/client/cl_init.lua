@@ -88,17 +88,17 @@ net.Receive( "LawsPublic", function()
 end)
 
 hook.Add( "HUDPaint", "HUDPaint_LawBox", function()
-  local lawTxt = laws
+  local lawTxt = laws or "Default laws."
   local x = ScrW()
   local y = ScrH()
 
-  if (lawTxt == "") then lawTxt = "Default laws." end
+  //if (lawTxt == "") then lawTxt = "Default laws." end
 
   local width, height = surface.GetTextSize( lawTxt )
 
   lawTxt = lawTxt:gsub("//", "\n"):gsub("\\n", "\n")
   lawTxt = DarkRP.textWrap(lawTxt, "open_sans_19b", 445)
-  
+
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 36, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
 
