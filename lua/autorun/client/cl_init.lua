@@ -11,44 +11,6 @@ local colour = {
    ["light"] = Color(101, 111, 123),
 }
 
-//local dst = draw.SimpleText
-/*
-local pos_x = 0
-local pos_y = 0
-local offset = 0
-local position = 0
-local alpha = 0
-*/
-/*
-local function FormatString(str)
-   local words = string.Explode(" ", str)
-   local upper, lower, str
-   local formatted = {}
-
-   for k, v in pairs(words) do
-      upper = string.upper(string.sub(v, 1, 1))
-      lower = string.lower(string.sub(v, 2))
-      table.insert(formatted, upper..lower)
-   end
-
-   str = formatted[1]
-
-   if #formatted > 1 then
-      for i = 1, #formatted-1 do
-         str = str.." "..formatted[i+1]
-      end
-   end
-
-   return str
-end
-*/
-/*
-local function SimpleShadowText(text, font, x, y, colour, min, xalign, yalign)
-   dst(text, font, x + 1, y + 1, Color(0, 0, 0, math.min(colour.a, min + 70)), xalign, yalign)
-   dst(text, font, x + 2, y + 1, Color(0, 0, 0, math.min(colour.a, min)), xalign, yalign)
-   dst(text, font, x, y, colour, xalign, yalign)
-end
-*/
 function OpenLawsEditor()
   local Frame = vgui.Create( "DFrame" )
   Frame:SetSize( 600, 550 )
@@ -88,7 +50,7 @@ net.Receive( "LawsPublic", function()
   laws = net.ReadString()
 end)
 
-hook.Add( "HUDPaint", function()
+function DrawLawBox()
   local lawTxt = laws or "Default laws."
   local x = ScrW()
   local y = ScrH()
@@ -100,10 +62,12 @@ hook.Add( "HUDPaint", function()
 
   if (lawTxt == "") then lawTxt = "Default laws." end
 
-  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, height + 36, Color( 0, 0, 0, 128 ) )
+  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, 150, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
 
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 100), 0)
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
-end)
+end
+
+hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox())
