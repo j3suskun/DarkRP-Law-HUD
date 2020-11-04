@@ -3,13 +3,31 @@ surface.CreateFont("open_sans_19b", {font = "Open Sans Bold", size = 19, weight 
 surface.SetFont("open_sans_19b")
 
 local colour = {
-   ["pure_white"] = Color(255, 255, 255),
+   //["pure_white"] = Color(255, 255, 255),
    ["white"] = Color(220, 220, 220),
-   ["grey"] = Color(155, 155, 155),
-   ["darkest"] = Color(43, 49, 55),
-   ["dark"] = Color(55, 61, 67),
-   ["light"] = Color(101, 111, 123),
+   //["grey"] = Color(155, 155, 155),
+   //["darkest"] = Color(43, 49, 55),
+   //["dark"] = Color(55, 61, 67),
+   //["light"] = Color(101, 111, 123),
 }
+
+function GetLineNum(text)
+  local lineNum = select(2, text:gsub('\n','\n'))
+  return lineNum
+end
+
+function UpdateLaws()
+  net.Start( "LawsValue" )
+  local LawValue = TextEntry:GetValue()
+  local oldLaws = laws
+  if(GetLineNum(LawValue) > 20)
+  then
+    lawValue = oldLaws
+    DarkRP.notify(ply, 1, 3, "Cannot exceed 20 lines")
+  end
+  net.WriteString( LawValue )
+  net.SendToServer()
+end
 
 function OpenLawsEditor()
   local Frame = vgui.Create( "DFrame" )
@@ -36,12 +54,7 @@ function OpenLawsEditor()
   DermaButton:SetText( "Update Laws" )
   DermaButton:SetPos( 178 , 512  )
   DermaButton:SetSize( 250, 30 )
-  DermaButton.DoClick = function()
-    net.Start( "LawsValue" )
-    local LawValue = TextEntry:GetValue()
-    net.WriteString( LawValue )
-    net.SendToServer()
- end
+  DermaButton.DoClick = UpdateLaws
 end
 
 net.Receive( "LawsMenu", OpenLawsEditor )
