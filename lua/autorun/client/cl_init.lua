@@ -17,24 +17,7 @@ function GetLineNum(text)
   local lineNum = select(2, text:gsub('\n','\n'))
   return lineNum
 end
-
-function changeLaws(newText)
-  local lawValue = newText:GetValue()
-  if(GetLineNum(lawValue) > 14)
-  then
-    notification.AddLegacy("Exceeded line limit", 1, 3)
-    return
-  end
-  if(string.len(lawValue) > 800)
-  then
-    notification.AddLegacy("Exceeded character limit", 1, 3)
-    return
-  end
-  net.Start( "LawsValue" )
-  net.WriteString( lawValue )
-  net.SendToServer()
-end
-
+  
 function OpenLawsEditor()
   local Frame = vgui.Create( "DFrame" )
   Frame:SetSize( 600, 550 )
@@ -60,7 +43,22 @@ function OpenLawsEditor()
   DermaButton:SetText( "Update Laws" )
   DermaButton:SetPos( 178 , 512  )
   DermaButton:SetSize( 250, 30 )
-  DermaButton.DoClick = changeLaws(TextEntry)
+  DermaButton.DoClick = function()
+    local lawValue = newText:GetValue()
+    if(GetLineNum(lawValue) > 14)
+    then
+      notification.AddLegacy("Exceeded line limit", 1, 3)
+      return
+    end
+    if(string.len(lawValue) > 800)
+    then
+      notification.AddLegacy("Exceeded character limit", 1, 3)
+      return
+    end
+    net.Start( "LawsValue" )
+    net.WriteString( lawValue )
+    net.SendToServer()
+  end
 end
 
 net.Receive( "LawsMenu", OpenLawsEditor )
