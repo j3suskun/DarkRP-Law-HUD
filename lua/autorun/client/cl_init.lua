@@ -11,9 +11,28 @@ local colour = {
    //["light"] = Color(101, 111, 123),
 }
 
+local showLawBox = true
+
 function GetLineNum(text)
   local lineNum = select(2, text:gsub('\n','\n'))
   return lineNum
+end
+
+function changeLaws(newText)
+  local lawValue = newText:GetValue()
+  if(GetLineNum(lawValue) > 14)
+  then
+    notification.AddLegacy("Exceeded line limit", 1, 3)
+    return
+  end
+  if(string.len(lawValue) > 800)
+  then
+    notification.AddLegacy("Exceeded character limit", 1, 3)
+    return
+  end
+  net.Start( "LawsValue" )
+  net.WriteString( lawValue )
+  net.SendToServer()
 end
 
 function OpenLawsEditor()
@@ -41,24 +60,7 @@ function OpenLawsEditor()
   DermaButton:SetText( "Update Laws" )
   DermaButton:SetPos( 178 , 512  )
   DermaButton:SetSize( 250, 30 )
-  DermaButton.DoClick = function()
-    local lawValue = TextEntry:GetValue()
-    local oldLaws = lawTxt
-    if(GetLineNum(lawValue) > 14)
-    then
-      notification.AddLegacy("Exceeded line limit", 1, 3)
-      return
-    end
-    if(string.len(lawValue) > 800)
-    then
-      notification.AddLegacy("Exceeded character limit", 1, 3)
-      return
-    end
-    lawTxt = lawValue
-    net.Start( "LawsValue" )
-    net.WriteString( lawValue )
-    net.SendToServer()
-  end
+  DermaButton.DoClick = changeLaws(TextEntry)
 end
 
 net.Receive( "LawsMenu", OpenLawsEditor )
@@ -87,4 +89,11 @@ function DrawLawBox()
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
 end
 
-hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
+net.Receive("LawsToggle",function()
+  showLawBox = !showLawBox
+end)
+
+if(showLawBox)
+then
+  hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
+end
