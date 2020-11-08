@@ -1,6 +1,7 @@
 util.AddNetworkString( "LawsMenu" )
 util.AddNetworkString( "LawsValue" )
 util.AddNetworkString( "LawsPublic" )
+util.AddNetworkString( "LawsToggle" )
 
 hook.Add( "PlayerSay", "OpenLawText", function( ply, text, public )
   local text = string.lower( text )

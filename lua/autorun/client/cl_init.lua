@@ -89,7 +89,7 @@ end
 
 net.Receive("LawsToggle",function()
   showLawBox = !showLawBox
-  print("Lawbox value: ", showLawBox)
+  print("Lawbox value: ", showLawBox) //debug
 end)
 
 if(showLawBox)
