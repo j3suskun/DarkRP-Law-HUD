@@ -96,4 +96,6 @@ end)
 if(showLawBox)
 then
   hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
+else
+  hook.Remove("HUDPaint", "HUDPaint_LawBox")
 end
