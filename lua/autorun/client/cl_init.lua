@@ -87,16 +87,19 @@ function DrawLawBox()
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
 end
 
+function lawBoxToggle()
+  if(showLawBox)
+  then
+    hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
+    print("confirm true")//debug
+  else
+    hook.Remove( "HUDPaint", "HUDPaint_LawBox" )
+    print("confirm false")//debug
+  end
+end
+
 net.Receive("LawsToggle",function()
   showLawBox = !showLawBox
   print("Lawbox value: ", showLawBox) //debug
+  lawBoxToggle()
 end)
-
-if(showLawBox)
-then
-  hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
-  print("confirm true")//debug
-else
-  hook.Remove( "HUDPaint", "HUDPaint_LawBox" )
-  print("confirm false")//debug
-end
