@@ -17,7 +17,7 @@ function GetLineNum(text)
   local lineNum = select(2, text:gsub('\n','\n'))
   return lineNum
 end
-  
+
 function OpenLawsEditor()
   local Frame = vgui.Create( "DFrame" )
   Frame:SetSize( 600, 550 )
@@ -89,6 +89,7 @@ end
 
 net.Receive("LawsToggle",function()
   showLawBox = !showLawBox
+  print("Lawbox value: ", showLawBox)
 end)
 
 if(showLawBox)
