@@ -29,3 +29,12 @@ net.Receive( "LawsValue", function()
   net.Broadcast()
   DarkRP.notifyAll( 0, 3, "The laws have been updated.")
 end)
+
+hook.Add("PlayerSay", "ToggleLawBox", function(ply, text, public)
+  local text = string.lower(text)
+  if(text == "/togglelaws")
+  then
+    net.Start("LawsToggle")
+    net.Send(ply)
+  end
+end)
