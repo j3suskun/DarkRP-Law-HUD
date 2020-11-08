@@ -36,5 +36,6 @@ hook.Add("PlayerSay", "ToggleLawBox", function(ply, text, public)
   then
     net.Start("LawsToggle")
     net.Send(ply)
+    return ''
   end
 end)
