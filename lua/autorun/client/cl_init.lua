@@ -79,12 +79,23 @@ function DrawLawBox()
 
   local txtWidth, txtHeight = surface.GetTextSize( lawTxt )
 
-  draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, txtHeight + 35, Color( 0, 0, 0, 128 ) )
-  draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
-
+  surface.SetDrawColor(0, 0, 0, 128)
+  surface.DrawRect(x * 0.76, y * 0.02, 455, txtHeight + 35)
+  surface.SetFont("open_sans_25b")
+  surface.SetTextColor(255, 255, 255, 255)
+  surface.SetTextPos(x * 0.766, y * 0.02)
+  surface.DrawText("Laws")
+  //draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, txtHeight + 35, Color( 0, 0, 0, 128 ) )
+  //draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
+  surface.SetFont("open_sans_19b")
+  surface.SetColor(colour.white)
+  surface.SetPos(x * 0.766, y * 0.043)
+  surface.DrawText(lawTxt)
+  /*
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 100), 0)
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
+*/
 end
 
 net.Receive("LawsToggle",function()
@@ -96,7 +107,5 @@ if(showLawBox)
 then
   hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
 else
-  timer.Simple( 5, function()
-	   hook.Remove( "HUDPaint", "HUDPaint_LawBox" )
-   end)
+  hook.Remove( "HUDPaint", "HUDPaint_LawBox" )
 end
