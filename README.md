@@ -1,5 +1,6 @@
 # DarkRP Laws HUD
 A HUD which displays laws for DarkRP
+Originally made by Kevin Adams, edited for functionality be j3suskun
 
 ##Features:
 
@@ -19,4 +20,4 @@ A HUD which displays laws for DarkRP
 * If your mayor job is unique, edit server/init.lua and replace TEAM_MAYOR with your job's identity. Ex: TEAM_PRESIDENT
 * Restart the server.
 
-**If you have any issues, create a new issue [here](https://github.com/Kevin-Adams/DarkRP-Law-HUD/issues/new), or add me on steam [here](http://steamcommunity.com/id/kevinadams/).**
+**If you have any issues, create a new issue [here](https://github.com/j3suskun/DarkRP-Law-HUD/issues/new)**
