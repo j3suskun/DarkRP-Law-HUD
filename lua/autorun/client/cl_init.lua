@@ -44,7 +44,7 @@ function OpenLawsEditor()
   DermaButton:SetPos( 178 , 512  )
   DermaButton:SetSize( 250, 30 )
   DermaButton.DoClick = function()
-    local lawValue = newText:GetValue()
+    local lawValue = TextEntry:GetValue()
     if(GetLineNum(lawValue) > 14)
     then
       notification.AddLegacy("Exceeded line limit", 1, 3)
