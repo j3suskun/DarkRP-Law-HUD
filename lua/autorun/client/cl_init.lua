@@ -103,8 +103,10 @@ function lawBoxToggle() //toggles the law box for users
     print("confirm false")//debug
   end
 end
+
 net.Receive("LawsToggle",function()
   showLawBox = !showLawBox //make the boolean value opposite of original value
-  print("Lawbox value: ", showLawBox) //debug
   lawBoxToggle()
 end)
+
+net.Receive("initLawBox",  lawBoxToggle)
