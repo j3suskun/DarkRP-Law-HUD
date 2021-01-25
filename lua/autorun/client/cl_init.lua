@@ -110,3 +110,4 @@ net.Receive("LawsToggle",function()
 end)
 
 net.Receive("initLawBox",  lawBoxToggle)
+hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
