@@ -12,7 +12,8 @@ local colour = {
 local showLawBox = true  //boolean value used to set whether box is shown
 
 /*
-This function is used to validate that the line number isn't too high
+This function is used to get the number of lines
+The number of lines is used later to validate it's not too many
 Otherwise it could take up too much of a screen
 it returns the number of lines in the given text
 */
@@ -49,7 +50,7 @@ function OpenLawsEditor() //most of this function was from the original coder
   DermaButton.DoClick = function() //every time I try to seperate this function it breaks, so it stays here
     local lawValue = TextEntry:GetValue()
     //if the line number or character number is too high I want to block the change
-    //this helps stop some amount of trolling
+    //this helps limit trolling slightly
     if(GetLineNum(lawValue) > 14)
     then
       notification.AddLegacy("Exceeded line limit", 1, 3)
@@ -87,7 +88,7 @@ function DrawLawBox() //I think all of this function was from the original coder
   draw.RoundedBox( 0, x * 0.76, y * 0.02, 455, txtHeight + 35, Color( 0, 0, 0, 128 ) )
   draw.DrawText( "Laws", "open_sans_25b", x * 0.766, y * 0.02, Color( 255, 255, 255, 255 ), TEXT_ALIGN_LEFT )
 
-//I'm not sure if all thre of the following draws are necessary
+//I'm not sure if all three of the following draws are necessary
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 170), 0)
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, Color(0, 0, 0, 100), 0)
   draw.DrawNonParsedText(lawTxt, "open_sans_19b", x * 0.766, y * 0.043, colour.white, 0)
@@ -97,10 +98,8 @@ function lawBoxToggle() //toggles the law box for users
   if(showLawBox)
   then
     hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)
-    print("confirm true")//debug
   else
     hook.Remove( "HUDPaint", "HUDPaint_LawBox" )
-    print("confirm false")//debug
   end
 end
 
@@ -109,5 +108,4 @@ net.Receive("LawsToggle",function()
   lawBoxToggle()
 end)
 
-net.Receive("initLawBox",  lawBoxToggle)
 hook.Add( "HUDPaint", "HUDPaint_LawBox", DrawLawBox)

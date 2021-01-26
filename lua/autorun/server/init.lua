@@ -45,9 +45,3 @@ hook.Add("PlayerSay", "ToggleLawBox", function(ply, text, public)
     return ''
   end
 end)
-
-hook.Add("PlayerInitialSpawn", "initLawBox", function(ply)
-  net.Start("initLawBox")
-  net.Send(ply)
-  return ''
-end)
