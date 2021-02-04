@@ -8,7 +8,7 @@ surface.SetFont("open_sans_19b") //I'm not sure if this is necessary but it make
 local colour = {
    ["white"] = Color(220, 220, 220)
 }
-
+local laws = DarkRP.getLaws()
 local showLawBox = true  //boolean value used to set whether box is shown
 
 /*
@@ -17,6 +17,8 @@ The number of lines is used later to validate it's not too many
 Otherwise it could take up too much of a screen
 it returns the number of lines in the given text
 */
+if laws.isEmpty() then laws = "Default Laws" end //not sure I like this, figure out how to remove it later if it's even necessary
+
 function GetLineNum(text)
   local lineNum = select(2, text:gsub('\n','\n'))
   return lineNum
@@ -35,13 +37,21 @@ function OpenLawsEditor() //most of this function was from the original coder
     draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0, 200) )
   end
 //a lot of this you should go to facepunch wiki to figure out, not enough room to explain within code
-  local TextEntry = vgui.Create( "DTextEntry", Frame )
-  local lawTxt = laws or "Default laws."
-  TextEntry:SetPos( 8, 25 )
-  TextEntry:SetSize( 583, 480 )
-  TextEntry:SetText( lawTxt )
-  TextEntry:SetMultiline( true )
-  if (lawTxt == "") then lawTxt = "Default laws." end
+  local lawList = vgui.Create( "DListView", Frame )
+  lawList:SetDataHeight(25)
+  lawList:AddColumn("#"):SetWidth(10)
+  lawList:AddColumn("Law"):SetWidth(480)
+  lawList:SetMultiSelect(false)
+
+  for k,v in ipairs(laws) do
+    lawList:AddLine(k,v)
+  end
+  //local lawTxt = laws or "Default laws."
+  //TextEntry:SetPos( 8, 25 )
+  //TextEntry:SetSize( 583, 480 )
+  //TextEntry:SetText( lawTxt )
+  //TextEntry:SetMultiline( true )
+  //if (lawTxt == "") then lawTxt = "Default laws." end
 
   local DermaButton = vgui.Create( "DButton", Frame )
   DermaButton:SetText( "Update Laws" )
@@ -70,7 +80,7 @@ end
 net.Receive( "LawsMenu", OpenLawsEditor )
 
 net.Receive( "LawsPublic", function()
-  laws = net.ReadString()
+  laws = DarkRP.getLaws()
 end)
 
 function DrawLawBox() //I think all of this function was from the original coder, so I can't explain much
